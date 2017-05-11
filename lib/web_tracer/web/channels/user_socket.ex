@@ -2,7 +2,7 @@ defmodule WebTracer.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", WebTracer.Web.RoomChannel
+  channel "tracer", WebTracer.Web.TracerChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -14,10 +14,6 @@ const ExtractCSS = new ExtractTextPlugin({
 
 var PLUGINS = [
   ExtractCSS,
-  new Webpack.ProvidePlugin({
-    jQuery: 'jquery',
-    Tether: 'tether'
-  }),
   new Webpack.DefinePlugin({
     APP_NAME: JSON.stringify(config.app_name),
     VERSION: JSON.stringify(config.version),
@@ -27,10 +23,6 @@ var PLUGINS = [
     context: './static',
     from: '**/*',
     to: '.'
-  }, {
-    context: './node_modules/font-awesome/fonts',
-    from: '*',
-    to: './fonts'
   }])
 ]
 

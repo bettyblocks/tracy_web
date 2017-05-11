@@ -14,6 +14,8 @@ defmodule WebTracer.Web.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
+    plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
 
@@ -34,7 +36,7 @@ defmodule WebTracer.Web.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_web_tracer_key",
-    signing_salt: "v+nUvclY"
+    signing_salt: "n7FTa+hY"
 
   plug WebTracer.Web.Router
 
