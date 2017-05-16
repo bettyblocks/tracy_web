@@ -1,7 +1,7 @@
-defmodule WebTracer.Web.TracerChannelTest do
-  use WebTracer.Web.ChannelCase
+defmodule TracyWeb.Web.TracerChannelTest do
+  use TracyWeb.Web.ChannelCase
 
-  alias WebTracer.Web.TracerChannel
+  alias TracyWeb.Web.TracerChannel
 
   setup do
     {:ok, _, socket} =

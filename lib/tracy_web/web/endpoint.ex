@@ -1,14 +1,14 @@
-defmodule WebTracer.Web.Endpoint do
-  use Phoenix.Endpoint, otp_app: :web_tracer
+defmodule TracyWeb.Web.Endpoint do
+  use Phoenix.Endpoint, otp_app: :tracy_web
 
-  socket "/socket", WebTracer.Web.UserSocket
+  socket "/socket", TracyWeb.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :web_tracer, gzip: false,
+    at: "/", from: :tracy_web, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,10 +35,10 @@ defmodule WebTracer.Web.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_web_tracer_key",
+    key: "_tracy_web_key",
     signing_salt: "n7FTa+hY"
 
-  plug WebTracer.Web.Router
+  plug TracyWeb.Web.Router
 
   @doc """
   Dynamically loads configuration from the system environment

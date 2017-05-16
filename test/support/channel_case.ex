@@ -1,4 +1,4 @@
-defmodule WebTracer.Web.ChannelCase do
+defmodule TracyWeb.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule WebTracer.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint WebTracer.Web.Endpoint
+      @endpoint TracyWeb.Web.Endpoint
     end
   end
 

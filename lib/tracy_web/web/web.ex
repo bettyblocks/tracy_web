@@ -1,12 +1,12 @@
-defmodule WebTracer.Web do
+defmodule TracyWeb.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use WebTracer.Web, :controller
-      use WebTracer.Web, :view
+      use TracyWeb.Web, :controller
+      use TracyWeb.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -18,17 +18,17 @@ defmodule WebTracer.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: WebTracer.Web
+      use Phoenix.Controller, namespace: TracyWeb.Web
       import Plug.Conn
-      import WebTracer.Web.Router.Helpers
-      import WebTracer.Web.Gettext
+      import TracyWeb.Web.Router.Helpers
+      import TracyWeb.Web.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/web_tracer/web/templates",
-                        namespace: WebTracer.Web
+      use Phoenix.View, root: "lib/tracy_web/web/templates",
+                        namespace: TracyWeb.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -36,9 +36,9 @@ defmodule WebTracer.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import WebTracer.Web.Router.Helpers
-      import WebTracer.Web.ErrorHelpers
-      import WebTracer.Web.Gettext
+      import TracyWeb.Web.Router.Helpers
+      import TracyWeb.Web.ErrorHelpers
+      import TracyWeb.Web.Gettext
     end
   end
 
@@ -53,7 +53,7 @@ defmodule WebTracer.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import WebTracer.Web.Gettext
+      import TracyWeb.Web.Gettext
     end
   end
 

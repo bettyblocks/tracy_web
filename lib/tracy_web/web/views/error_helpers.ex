@@ -1,4 +1,4 @@
-defmodule WebTracer.Web.ErrorHelpers do
+defmodule TracyWeb.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule WebTracer.Web.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(WebTracer.Web.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TracyWeb.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(WebTracer.Web.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TracyWeb.Web.Gettext, "errors", msg, opts)
     end
   end
 end

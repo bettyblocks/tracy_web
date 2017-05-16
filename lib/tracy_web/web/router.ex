@@ -1,5 +1,5 @@
-defmodule WebTracer.Web.Router do
-  use WebTracer.Web, :router
+defmodule TracyWeb.Web.Router do
+  use TracyWeb.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,14 +13,14 @@ defmodule WebTracer.Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", WebTracer.Web do
+  scope "/", TracyWeb.Web do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", WebTracer.Web do
+  # scope "/api", TracyWeb.Web do
   #   pipe_through :api
   # end
 end

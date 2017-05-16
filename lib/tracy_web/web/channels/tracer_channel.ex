@@ -1,5 +1,5 @@
-defmodule WebTracer.Web.TracerChannel do
-  use WebTracer.Web, :channel
+defmodule TracyWeb.Web.TracerChannel do
+  use TracyWeb.Web, :channel
 
   def join("tracer", payload, socket) do
     {:ok, socket}

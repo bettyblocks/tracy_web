@@ -1,4 +1,4 @@
-defmodule WebTracer.Registry do
+defmodule TracyWeb.Registry do
   use GenServer
 
   # Client API

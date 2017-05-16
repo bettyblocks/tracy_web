@@ -1,4 +1,4 @@
-defmodule WebTracer.Web.ConnCase do
+defmodule TracyWeb.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,10 +19,10 @@ defmodule WebTracer.Web.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import WebTracer.Web.Router.Helpers
+      import TracyWeb.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint WebTracer.Web.Endpoint
+      @endpoint TracyWeb.Web.Endpoint
     end
   end
 

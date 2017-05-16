@@ -1,5 +1,5 @@
-defmodule WebTracer.Web.ErrorView do
-  use WebTracer.Web, :view
+defmodule TracyWeb.Web.ErrorView do
+  use TracyWeb.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"
