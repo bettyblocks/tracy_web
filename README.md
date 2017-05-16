@@ -1,4 +1,7 @@
-# WebTracer
+# TracyWeb
+
+Provides a web user interface for the Tracy function tracer.
+
 
 To start your Phoenix server:
 
