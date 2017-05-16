@@ -25,15 +25,15 @@ defmodule TracyWeb.Coordinator do
     {:ok, %{}}
   end
 
-  def handle_call({:check_start_trace, identifier}, _from, state) do
+  def handle_call({:check_start_trace, definition_id}, _from, state) do
     reply =
-      case Registry.get(identifier) do
+      case Registry.get(definition_id) do
         {:ok, definition} ->
-          id = Tracy.Util.id()
+          trace_id = Tracy.Util.id()
           # start tracer process in supervisor
-          {:ok, upstream} = UpstreamSupervisor.start_upstream(id)
+          {:ok, upstream} = UpstreamSupervisor.start_upstream(definition_id, trace_id)
           # reply with the new process and the definition
-          {:ok, {id, definition, upstream}}
+          {:ok, {trace_id, definition, upstream}}
 
         {:error, _} = e ->
           e

@@ -1,14 +1,8 @@
 defmodule TracyWeb.Web.TracerChannel do
   use TracyWeb.Web, :channel
 
-  def join("tracer", payload, socket) do
-    {:ok, socket}
-  end
-
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
-  def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
+  def join("tracer:" <> session_id, payload, socket) do
+    {:ok, assign(socket, :session_id, session_id)}
   end
 
   # It is also common to receive messages from the client and

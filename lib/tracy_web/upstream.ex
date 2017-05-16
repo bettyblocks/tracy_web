@@ -4,18 +4,19 @@ defmodule TracyWeb.Upstream do
   alias TracyWeb.Storage
 
   # Client API
-  def start_link(id) do
-    GenServer.start_link(__MODULE__, id)
+  def start_link(definition_id, trace_id) do
+    GenServer.start_link(__MODULE__, {definition_id, trace_id})
   end
 
   # Server callbacks
 
-  def init(id) do
-    {:ok, id}
+  def init({definition_id, trace_id}) do
+    Storage.store_session(definition_id, trace_id)
+    {:ok, {definition_id, trace_id}}
   end
 
-  def handle_info(message, id) do
-    Storage.store_trace(id, message)
-    {:noreply, id}
+  def handle_info(message, state={_, trace_id}) do
+    Storage.store_trace(trace_id, message)
+    {:noreply, state}
   end
 end

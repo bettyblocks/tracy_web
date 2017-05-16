@@ -18,8 +18,8 @@ defmodule TracyWebTest do
     String.downcase "AB"
 
     :timer.sleep 100
-    assert [_, _, _, _] = Storage.all(session)
-
+    assert [_] = Storage.get_sessions(definition)
+    assert [_, _, _, _] = Storage.get_traces(session)
 
   end
 end
