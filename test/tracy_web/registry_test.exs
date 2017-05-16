@@ -4,7 +4,7 @@ defmodule TracyWeb.RegistryTest do
   alias TracyWeb.Registry
   alias Tracy.Definition
 
-  test "registered under global name" do
+  test "registered process" do
     pid = Process.whereis(TracyWeb.Registry)
     assert is_pid pid
     assert Process.alive? pid
@@ -12,7 +12,6 @@ defmodule TracyWeb.RegistryTest do
 
   test "Create configuration and look it up" do
     a = Definition.new(Aa)
-
     assert :ok = Registry.put(a)
     assert {:ok, ^a} = Registry.get(a.id)
   end

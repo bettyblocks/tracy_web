@@ -10,9 +10,11 @@ defmodule TracyWeb.Application do
     children = [
       worker(TracyWeb.Registry, []),
       worker(TracyWeb.Coordinator, []),
-      supervisor(TracyWeb.TraceSupervisor, []),
+      supervisor(TracyWeb.UpstreamSupervisor, []),
       supervisor(TracyWeb.Web.Endpoint, []),
     ]
+
+    :ok = TracyWeb.Storage.init()
 
     opts = [strategy: :one_for_one, name: TracyWeb.Supervisor]
     Supervisor.start_link(children, opts)

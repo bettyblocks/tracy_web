@@ -1,7 +1,7 @@
 defmodule TracyWeb.Coordinator do
   use GenServer
 
-  alias TracyWeb.Registry
+  alias TracyWeb.{Registry, UpstreamSupervisor}
 
   # Client API
   def start_link() do
@@ -29,7 +29,14 @@ defmodule TracyWeb.Coordinator do
     reply =
       case Registry.get(identifier) do
         {:ok, definition} ->
+          id = Tracy.Util.id()
           # start tracer process in supervisor
+          {:ok, upstream} = UpstreamSupervisor.start_upstream(id)
+          # reply with the new process and the definition
+          {:ok, {id, definition, upstream}}
+
+        {:error, _} = e ->
+          e
       end
     {:reply, reply, state}
   end

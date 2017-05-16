@@ -1,4 +1,7 @@
 defmodule TracyWeb.Registry do
+  @doc """
+  Storage for tracing definitions
+  """
   use GenServer
 
   # Client API
@@ -12,6 +15,10 @@ defmodule TracyWeb.Registry do
 
   def get(id) do
     GenServer.call(__MODULE__, {:get, id})
+  end
+
+  def all() do
+    GenServer.call(__MODULE__, :all)
   end
 
   # Server callbacks
@@ -32,6 +39,10 @@ defmodule TracyWeb.Registry do
         d -> {:ok, d}
       end
     {:reply, reply, state}
+  end
+
+  def handle_call(:all, _from, state) do
+    {:reply, state, state}
   end
 
 end
