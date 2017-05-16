@@ -3,19 +3,15 @@ defmodule TracyWeb.Registry do
 
   # Client API
   def start_link() do
-    GenServer.start_link(__MODULE__, [], name: name())
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
   def put(definition) do
-    GenServer.call(name(), {:put, definition})
+    GenServer.call(__MODULE__, {:put, definition})
   end
 
   def get(id) do
-    GenServer.call(name(), {:get, id})
-  end
-
-  defp name() do
-    {:global, __MODULE__}
+    GenServer.call(__MODULE__, {:get, id})
   end
 
   # Server callbacks

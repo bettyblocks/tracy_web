@@ -1,10 +1,11 @@
 defmodule TracyWeb.RegistryTest do
   use ExUnit.Case
 
-  alias TracyWeb.{Registry, Definition}
+  alias TracyWeb.Registry
+  alias Tracy.Definition
 
   test "registered under global name" do
-    pid = :global.whereis_name(TracyWeb.Registry)
+    pid = Process.whereis(TracyWeb.Registry)
     assert is_pid pid
     assert Process.alive? pid
   end

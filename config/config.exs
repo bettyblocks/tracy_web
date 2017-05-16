@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :web_tracer, WebTracer.Web.Endpoint,
+config :tracy_web, TracyWeb.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "czQRNR+t4wi+j61iY457bMuIuAS5zZT9aBYPrRcRrva9p0bv/LF0CmusYuMse/aR",
-  render_errors: [view: WebTracer.Web.ErrorView, accepts: ~w(json)],
-  pubsub: [name: WebTracer.PubSub,
+  render_errors: [view: TracyWeb.Web.ErrorView, accepts: ~w(json)],
+  pubsub: [name: TracyWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

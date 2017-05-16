@@ -8,8 +8,10 @@ defmodule TracyWeb.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      supervisor(TracyWeb.Web.Endpoint, []),
       worker(TracyWeb.Registry, []),
+      worker(TracyWeb.Coordinator, []),
+      supervisor(TracyWeb.TraceSupervisor, []),
+      supervisor(TracyWeb.Web.Endpoint, []),
     ]
 
     opts = [strategy: :one_for_one, name: TracyWeb.Supervisor]
