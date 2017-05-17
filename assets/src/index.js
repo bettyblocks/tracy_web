@@ -4,6 +4,8 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import socket from './socket'
 import reducers from './reducers'
@@ -22,7 +24,11 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 class App extends Component {
   render () {
-    return <h1>app</h1>
+    return (
+      <MuiThemeProvider>
+        <RaisedButton label="Default" />
+      </MuiThemeProvider>
+    )
   }
 }
 
