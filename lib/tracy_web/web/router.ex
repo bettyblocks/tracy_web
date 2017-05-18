@@ -17,6 +17,7 @@ defmodule TracyWeb.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/d/:id", PageController, :index
   end
 
   # Other scopes may use custom stacks.

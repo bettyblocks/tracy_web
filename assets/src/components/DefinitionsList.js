@@ -12,7 +12,7 @@ import actions from '../actions'
 class Component extends React.Component {
 
   openDefinition(id) {
-    store.dispatch(push(`d/${id}`))
+    store.dispatch(push(`/d/${id}`))
   }
 
   render() {

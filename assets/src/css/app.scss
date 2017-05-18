@@ -11,15 +11,30 @@ div[data-reactroot] {
 
 body {
   margin: 0;
+  font-family: Roboto, sans-serif;
 }
 
 .horizontal-container--wrapper {
   flex: 1;
   display: flex;
   flex-direction: row;
+  position: relative!important;
+  height: inherit;
+
   > .item {
     min-width: 250px;
     max-width: 500px;
   }
 
+}
+
+$pad: 12px;
+
+.padding {
+  padding: $pad;
+  width: 100%;
+}
+
+.content {
+  padding: $pad;
 }

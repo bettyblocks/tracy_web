@@ -12,6 +12,7 @@ injectTapEventPlugin();
 
 import store from './store'
 import App from './app'
+import DefinitionDetail from './pages/DefinitionDetail'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -19,7 +20,7 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <Route path="/d" component={App} />
+        <Route path="/d/:definition" component={DefinitionDetail} />
       </Route>
     </Router>
   </Provider>
