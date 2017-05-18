@@ -2,6 +2,7 @@ defmodule TracyWeb.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
+  channel "api", TracyWeb.Web.ApiChannel
   channel "tracer:*", TracyWeb.Web.TracerChannel
 
   ## Transports

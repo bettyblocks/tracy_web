@@ -1,32 +1,27 @@
+require("babel-core/register");
+require("babel-polyfill");
+
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { Router, Route } from 'react-router'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import socket from './socket'
-import reducers from './reducers'
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
+import { history, store } from './store'
+import actions from './actions'
 import './css/app.scss'
 
-const store = createStore(
-  combineReducers({
-    ...reducers,
-    routing: routerReducer
-  }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
-
-const history = syncHistoryWithStore(browserHistory, store)
 
 class App extends Component {
   render () {
     return (
       <MuiThemeProvider>
-        <RaisedButton label="Default" />
+        <RaisedButton label="Load" onTouchTap={() => store.dispatch(actions.getDefinitions())}/>
       </MuiThemeProvider>
     )
   }
