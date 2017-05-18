@@ -1,6 +1,25 @@
 @import "variables";
 @import "phoenix";
 
+html, body, #root, div[data-reactroot] {
+  height: 100%;
+}
+div[data-reactroot] {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   margin: 0;
+}
+
+.horizontal-container--wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  > .item {
+    min-width: 250px;
+    max-width: 500px;
+  }
+
 }

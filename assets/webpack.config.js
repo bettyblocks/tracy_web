@@ -43,6 +43,8 @@ module.exports = function (env = {}) {
       ]
     },
 
+    devtool: 'cheap-module-eval-source-map',
+
     output: {
       filename: 'js/[name].js',
       path: OUTPUT_PATH

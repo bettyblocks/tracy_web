@@ -15,8 +15,17 @@ defmodule TracyWeb.Application do
     ]
 
     :ok = TracyWeb.Storage.init()
+    spawn(fn ->
+      :timer.sleep 100
+      after_init()
+    end)
 
     opts = [strategy: :one_for_one, name: TracyWeb.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  defp after_init do
+    TracyWeb.Registry.put(Tracy.Definition.new([String]))
+  end
+
 end

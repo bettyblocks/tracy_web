@@ -4,33 +4,23 @@ require("babel-polyfill");
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { Router, Route } from 'react-router'
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Router, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import { history, store } from './store'
-import actions from './actions'
-import './css/app.scss'
+import store from './store'
+import App from './app'
 
-
-class App extends Component {
-  render () {
-    return (
-      <MuiThemeProvider>
-        <RaisedButton label="Load" onTouchTap={() => store.dispatch(actions.getDefinitions())}/>
-      </MuiThemeProvider>
-    )
-  }
-}
+const history = syncHistoryWithStore(browserHistory, store)
 
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path="/" component={App}>
+        <Route path="/d" component={App} />
+      </Route>
     </Router>
   </Provider>
   , document.getElementById('root'))
