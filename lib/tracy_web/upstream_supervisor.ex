@@ -12,8 +12,8 @@ defmodule TracyWeb.UpstreamSupervisor do
     supervise(children, strategy: :simple_one_for_one)
   end
 
-  def start_upstream(definition_id, trace_id) do
-    Supervisor.start_child(__MODULE__, [definition_id, trace_id])
+  def start_upstream(session) do
+    Supervisor.start_child(__MODULE__, [session])
   end
 
 end

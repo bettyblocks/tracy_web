@@ -12,6 +12,13 @@ defmodule TracyWeb.Web.ApiChannel do
     {:reply, {:ok, definitions}, socket}
   end
 
+  def handle_in("get_sessions", definition_id, socket) do
+    s = Storage.get_sessions(definition_id)
+    IO.inspect s, label: "s"
+    reply = %{sessions: s}
+    {:reply, {:ok, reply}, socket}
+  end
+
   def handle_in("get_definition", payload, socket) do
     definition = %{foo: "bar"}
     {:reply, {:ok, definition}, socket}

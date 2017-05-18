@@ -1,8 +1,9 @@
 import React from 'react'
 
+import HorizontalContainer from '../components/HorizontalContainer'
 import DefinitionsList from '../components/DefinitionsList'
 import DefinitionDetail from '../components/DefinitionDetail'
-import HorizontalContainer from '../components/HorizontalContainer'
+import SessionDetail from '../components/SessionDetail'
 
 export default class Page extends React.Component {
   render() {
@@ -10,6 +11,7 @@ export default class Page extends React.Component {
       <HorizontalContainer>
         <DefinitionsList />
         <DefinitionDetail />
+        <SessionDetail />
       </HorizontalContainer>
     )
   }

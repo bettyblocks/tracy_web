@@ -1,8 +1,18 @@
 defmodule TracyWeb.Web.TracerChannel do
   use TracyWeb.Web, :channel
 
+  alias TracyWeb.Storage
+
   def join("tracer:" <> session_id, payload, socket) do
+    send(self, :after_join)
     {:ok, assign(socket, :session_id, session_id)}
+  end
+
+  def handle_info(:after_join, socket) do
+    traces = Storage.get_traces(socket.assigns.session_id)
+    |> IO.inspect(label: "traces")
+    push socket, "traces", %{traces: traces}
+    {:noreply, socket}
   end
 
   # It is also common to receive messages from the client and

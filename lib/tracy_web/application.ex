@@ -25,7 +25,9 @@ defmodule TracyWeb.Application do
   end
 
   defp after_init do
-    TracyWeb.Registry.put(Tracy.Definition.new([String]))
+    d = Tracy.Definition.new([String])
+    d = %{d | id: "test"}
+    TracyWeb.Registry.put(d)
   end
 
 end

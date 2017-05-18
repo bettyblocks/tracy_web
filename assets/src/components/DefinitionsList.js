@@ -11,6 +11,10 @@ import actions from '../actions'
 
 class Component extends React.Component {
 
+  componentDidMount() {
+    store.dispatch(actions.getDefinitions())
+  }
+
   openDefinition(id) {
     store.dispatch(push(`/d/${id}`))
   }
@@ -19,7 +23,8 @@ class Component extends React.Component {
     let { definitions } = this.props
     return (
       <List>
-      {Object.values(definitions).map(this.renderItem.bind(this))}
+        <Subheader>Definitions</Subheader>
+        {Object.values(definitions).map(this.renderItem.bind(this))}
       </List>
     )
   }
@@ -27,6 +32,7 @@ class Component extends React.Component {
   renderItem(d) {
     return (
       <ListItem
+        className={d.id === this.props.activeDefinition ? "selected" : null}
         onTouchTap={() => this.openDefinition(d.id)}
         key={d.id}>{d.id}</ListItem>
     )

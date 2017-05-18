@@ -21,9 +21,11 @@ body {
   position: relative!important;
   height: inherit;
 
-  > .item {
-    min-width: 250px;
-    max-width: 500px;
+  > div > div {
+    overflow: auto;
+    > * {
+      width: 100%;
+    }
   }
 
 }
@@ -32,9 +34,19 @@ $pad: 12px;
 
 .padding {
   padding: $pad;
-  width: 100%;
 }
 
 .content {
   padding: $pad;
+  margin-bottom: $pad;
+
+  h2 {
+    font-size: 1em;
+    margin: 0;
+    margin-bottom: $pad;
+  }
+}
+
+.selected {
+  background-color: #e0e0e0 !important;
 }

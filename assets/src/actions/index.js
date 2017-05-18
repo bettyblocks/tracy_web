@@ -1,7 +1,15 @@
 import { createActions } from 'redux-actions'
 
 export default createActions({
+  SET_ACTIVE_DEFINITION: x => x,
   GET_DEFINITIONS: x => x,
   GET_DEFINITIONS_RESULT: x => x,
-  LOAD: x => x
+
+  SET_ACTIVE_SESSION: x => x,
+  GET_SESSIONS: x => x,
+  GET_SESSIONS_RESULT: x => x,
+  NEW_SESSION: x => x,
+
+  GET_TRACES_RESULT: x => x,
+  NEW_TRACE: x => x
 })

@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router'
 import createSagaMiddleware from 'redux-saga'
 
 import reducers from './reducers'
-import actions from './actions'
 import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -25,7 +24,5 @@ const store = createStore(
 )
 
 sagaMiddleware.run(rootSaga)
-
-store.dispatch(actions.getDefinitions())
 
 export default store
