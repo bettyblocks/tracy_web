@@ -21,11 +21,11 @@ body {
   position: relative!important;
   height: inherit;
 
-  > div > div {
-    overflow: auto;
-    > * {
-      width: 100%;
-    }
+  // individual columns
+  > div > div > * {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
 }
@@ -49,4 +49,11 @@ $pad: 12px;
 
 .selected {
   background-color: #e0e0e0 !important;
+}
+
+.traces-list {
+  > div {
+    overflow: auto;
+    height: calc(100vh - 80px);
+  }
 }

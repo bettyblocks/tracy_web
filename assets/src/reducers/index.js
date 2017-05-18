@@ -15,8 +15,8 @@ export default {
   traces: handleActions({
     // Set the traces
     GET_TRACES_RESULT: (state, action) => action.payload,
-    // Prepend a new trace
-    NEW_TRACE: (state, action) => [action.payload].concat(state)
+    // Append a new trace
+    NEW_TRACE: (state, action) => state.concat([action.payload])
   }, []),
 
   activeDefinition: handleActions({
