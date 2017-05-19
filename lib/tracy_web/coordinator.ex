@@ -30,11 +30,8 @@ defmodule TracyWeb.Coordinator do
       case Registry.get(definition_id) do
         {:ok, definition} ->
           session = TracyWeb.Session.new(definition_id, session_id)
-          :ok = TracyWeb.Storage.store_session(session)
           # start tracer process in supervisor
           {:ok, upstream} = UpstreamSupervisor.start_upstream(session)
-          # tell the world about the new session
-          TracyWeb.Web.Endpoint.broadcast("api", "new_session", session)
           # reply with the new process and the definition
           {:ok, {session.id, definition, upstream}}
 

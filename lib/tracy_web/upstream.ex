@@ -12,7 +12,7 @@ defmodule TracyWeb.Upstream do
 
   # Server callbacks
   defmodule State do
-    defstruct session: nil, traces: [], last_flush: 0
+    defstruct session: nil, traces: [], last_flush: 0, session_stored: false
   end
 
   def init(session) do
@@ -21,9 +21,9 @@ defmodule TracyWeb.Upstream do
   end
 
   def handle_info({:trace, _, _} = message, %State{session: session, traces: traces} = state) do
+    state = check_session_stored(state)
     trace = Trace.new(message)
     Storage.store_trace(session.id, trace)
-    IO.inspect session.id, label: "store"
     state = opt_flush(%State{state | traces: [trace | traces]})
     {:noreply, state, @timeout}
   end
@@ -48,6 +48,17 @@ defmodule TracyWeb.Upstream do
       false ->
         state
     end
+  end
+
+  defp check_session_stored(state = %State{session_stored: true}) do
+    state
+  end
+  defp check_session_stored(state = %State{session: session}) do
+    # Add to storage
+    :ok = TracyWeb.Storage.store_session(session)
+    # tell the world about the new session
+    TracyWeb.Web.Endpoint.broadcast("api", "new_session", session)
+    %State{state | session_stored: true}
   end
 
 end
