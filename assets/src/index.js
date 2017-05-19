@@ -13,6 +13,7 @@ injectTapEventPlugin();
 import store from './store'
 import App from './app'
 import DefinitionDetail from './pages/DefinitionDetail'
+import DefinitionEdit from './pages/DefinitionEdit'
 import SessionDetail from './pages/SessionDetail'
 
 const history = syncHistoryWithStore(browserHistory, store)
@@ -22,6 +23,7 @@ render(
     <Router history={history}>
       <Route path="/" component={App}>
         <Route path="/d/:definition" component={DefinitionDetail} />
+        <Route path="/d/:definition/edit" component={DefinitionEdit} />
         <Route path="/s/:definition/:session" component={SessionDetail} />
       </Route>
     </Router>

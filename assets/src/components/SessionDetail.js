@@ -16,8 +16,9 @@ const ScrollList = AutoScroll({property: 'traces'})(class TracesList extends Rea
 
   renderItem(trace, i) {
     return (
-      <ListItem key={i}
-        primaryText={trace.trace} />
+      <ListItem key={i}>
+        {trace.trace}
+      </ListItem>
     )
   }
 })

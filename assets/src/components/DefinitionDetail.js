@@ -5,6 +5,8 @@ import { push } from 'react-router-redux'
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import IconButton from 'material-ui/IconButton';
+import Edit from 'material-ui/svg-icons/image/edit';
 
 import store from '../store'
 
@@ -14,6 +16,10 @@ class DefinitionDetail extends React.Component {
     store.dispatch(push(`/s/${this.props.activeDefinition}/${session.id}`))
   }
 
+  openDefinitionDetail() {
+    store.dispatch(push(`/d/${this.props.activeDefinition}/edit`))
+  }
+
   render() {
     const definition = this.props.definitions[this.props.activeDefinition]
     if (!definition) return <span />
@@ -21,8 +27,13 @@ class DefinitionDetail extends React.Component {
     return (
       <div className="padding">
         <Paper className="content">
-          <h2>Definition: {definition.id}</h2>
+          <IconButton className="icon-button" onTouchTap={::this.openDefinitionDetail}>
+            <Edit />
+          </IconButton>
+
+          <h2>{definition.id}</h2>
           Modules: {definition.modules.join(",")}
+
         </Paper>
 
         <Paper>

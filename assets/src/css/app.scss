@@ -40,10 +40,26 @@ $pad: 12px;
   padding: $pad;
   margin-bottom: $pad;
 
-  h2 {
-    font-size: 1em;
+  h2, h3 {
     margin: 0;
     margin-bottom: $pad;
+    color: rgba(0, 0, 0, 0.541176);
+    font-weight: 500;
+    line-height: 1;
+  }
+  h2 {
+    font-size: 24px;
+    margin-bottom: $pad * 2;
+  }
+  h3 {
+    font-size: 14px;
+  }
+
+  button.icon-button {
+      float: right;
+      margin: -$pad / 2 !important;
+      width: 48px;
+      height: 48px;
   }
 }
 
