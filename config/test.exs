@@ -6,5 +6,9 @@ config :tracy_web, TracyWeb.Web.Endpoint,
   http: [port: 4001],
   server: false
 
+config :tracy_web, :definitions, [
+  [id: "test", modules: [String]]
+]
+
 # Print only warnings and errors during test
 config :logger, level: :warn

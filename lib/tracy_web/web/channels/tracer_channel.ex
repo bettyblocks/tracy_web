@@ -8,17 +8,16 @@ defmodule TracyWeb.Web.TracerChannel do
     {:ok, assign(socket, :session_id, session_id)}
   end
 
-  def handle_info(:after_join, socket) do
-    traces = Storage.get_traces(socket.assigns.session_id)
-    |> IO.inspect(label: "traces")
-    push socket, "traces", %{traces: traces}
-    {:noreply, socket}
-  end
-
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (tracer:lobby).
   def handle_in("shout", payload, socket) do
     broadcast socket, "shout", payload
+    {:noreply, socket}
+  end
+
+  def handle_info(:after_join, socket) do
+    traces = Storage.get_traces(socket.assigns.session_id)
+    push socket, "traces", %{traces: traces}
     {:noreply, socket}
   end
 end

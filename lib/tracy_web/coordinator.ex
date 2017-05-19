@@ -12,8 +12,8 @@ defmodule TracyWeb.Coordinator do
     GenServer.call(name(), {:put, definition})
   end
 
-  def check_start_trace(identifier) do
-    GenServer.call(name(), {:check_start_trace, identifier})
+  def check_start_trace(definition_id, session_id \\ nil) do
+    GenServer.call(name(), {:check_start_trace, definition_id, session_id})
   end
 
   defp name() do
@@ -25,11 +25,11 @@ defmodule TracyWeb.Coordinator do
     {:ok, %{}}
   end
 
-  def handle_call({:check_start_trace, definition_id}, _from, state) do
+  def handle_call({:check_start_trace, definition_id, session_id}, _from, state) do
     reply =
       case Registry.get(definition_id) do
         {:ok, definition} ->
-          session = TracyWeb.Session.new(definition_id)
+          session = TracyWeb.Session.new(definition_id, session_id)
           :ok = TracyWeb.Storage.store_session(session)
           # start tracer process in supervisor
           {:ok, upstream} = UpstreamSupervisor.start_upstream(session)

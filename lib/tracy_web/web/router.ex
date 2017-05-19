@@ -18,6 +18,7 @@ defmodule TracyWeb.Web.Router do
 
     get "/", PageController, :index
     get "/d/:definition", PageController, :index
+    get "/d/:definition/edit", PageController, :index
     get "/s/:definition/:session", PageController, :index
   end
 

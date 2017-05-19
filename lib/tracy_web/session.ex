@@ -3,9 +3,9 @@ defmodule TracyWeb.Session do
   defstruct id: nil, definition_id: nil, time: nil
   alias __MODULE__, as: Session
 
-  def new(definition_id, time \\ DateTime.utc_now()) do
+  def new(definition_id, session_id \\ nil, time \\ DateTime.utc_now()) do
     %Session{
-      id: Tracy.Util.id(),
+      id: session_id || Tracy.Util.id(),
       definition_id: definition_id,
       time: time
     }

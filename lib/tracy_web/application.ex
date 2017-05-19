@@ -25,9 +25,11 @@ defmodule TracyWeb.Application do
   end
 
   defp after_init do
-    d = Tracy.Definition.new([String])
-    d = %{d | id: "test"}
-    TracyWeb.Registry.put(d)
+    for preset <- Application.get_env(:tracy_web, :definitions, []) do
+      d = Tracy.Definition.new(preset[:modules])
+      d = %{d | id: preset[:id]}
+      TracyWeb.Registry.put(d)
+    end
   end
 
 end
