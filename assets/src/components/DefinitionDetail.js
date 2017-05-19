@@ -38,8 +38,8 @@ class DefinitionDetail extends React.Component {
 
         </Paper>
 
-        <Paper>
-          <Subheader>Sessions</Subheader>
+        <Paper className="content sessions-list">
+          <h3>Sessions</h3>
           <List>
             {this.props.sessions.map(this.renderSessionItem.bind(this))}
           </List>

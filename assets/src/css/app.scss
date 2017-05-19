@@ -13,6 +13,9 @@ body {
   margin: 0;
   font-family: Roboto, sans-serif;
 }
+div {
+  user-select: inherit !important;
+}
 
 .horizontal-container--wrapper {
   flex: 1;
@@ -78,4 +81,9 @@ $pad: 12px;
         overflow: hidden;
         height: 50px;
     }
+}
+
+.sessions-list {
+    flex: 1;
+    overflow: auto;
 }
