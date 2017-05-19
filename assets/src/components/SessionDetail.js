@@ -12,7 +12,7 @@ import actions from '../actions'
 
 class SessionDetail extends React.Component {
   render() {
-    const title = `Traces (${this.props.traces.length})`;
+    const title = `Trace details (${this.props.traces.length} entries)`;
     return (
       <div className="traces-list">
         <Toolbar>

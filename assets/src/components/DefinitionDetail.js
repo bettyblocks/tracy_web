@@ -39,7 +39,7 @@ class DefinitionDetail extends React.Component {
         </Paper>
 
         <Paper className="content sessions-list">
-          <h3>Sessions</h3>
+          <h3>Traces</h3>
           <List>
             {this.props.sessions.map(this.renderSessionItem.bind(this))}
           </List>

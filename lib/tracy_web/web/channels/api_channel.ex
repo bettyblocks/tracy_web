@@ -28,4 +28,18 @@ defmodule TracyWeb.Web.ApiChannel do
     {:reply, {:ok, %{}}, socket}
   end
 
+  def handle_in("mod_autocomplete", %{"text" => text}, socket) do
+    q = text |> String.to_charlist() |> Enum.reverse()
+    completions =
+      case IEx.Autocomplete.expand(q) do
+        {:yes, [], list} ->
+          list |> Enum.map(&to_string/1)
+        {:yes, result, []} ->
+          [text <> IO.chardata_to_string(result)]
+        {:no, _, _} ->
+          []
+      end
+    {:reply, {:ok, %{completions: completions}}, socket}
+  end
+
 end

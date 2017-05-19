@@ -8,6 +8,8 @@ import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import Edit from 'material-ui/svg-icons/image/edit';
 
+import ModuleInput from './ModuleInput'
+
 import store from '../store'
 
 class DefinitionEdit extends React.Component {
@@ -22,7 +24,7 @@ class DefinitionEdit extends React.Component {
           <h2>Editing: {definition.id}</h2>
 
           <h3>Traced modules</h3>
-          aaaa
+          {definition.modules.map((m, i) => <ModuleInput key={i} module={m} />)}
         </Paper>
       </div>
     )

@@ -8,7 +8,7 @@ import actions from '../actions'
 import routerSaga from './router'
 
 // Now that you are connected, you can join channels with a topic:
-let api = socket.channel('api', {});
+export let api = socket.channel('api', {});
 api
   .join()
   .receive('error', resp => { console.log('Unable to join', resp) })
@@ -17,6 +17,7 @@ api.on('new_session', session => {
   store.dispatch(actions.newSession(session))
   store.dispatch(actions.setActiveSession(session.id))
 })
+
 
 function* channelCall(pattern, resultActionCreator) {
   while (true) {
