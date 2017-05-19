@@ -41,4 +41,18 @@ defmodule TracyWebTest do
     assert Enum.member?(keys, "test")
   end
 
+  @metadata %{"hello" => "there"}
+
+  test "integration with storing metadata", %{definition: definition} do
+    Tracy.check_start_trace(definition, nil, fn() -> @metadata end)
+    {_, session} = assert_receive {:trace_started, _}
+
+    String.downcase "AA"
+    String.downcase "AB"
+
+    :timer.sleep 100
+    assert [sess] = Storage.get_sessions(definition)
+    assert sess.metadata == @metadata
+  end
+
 end
