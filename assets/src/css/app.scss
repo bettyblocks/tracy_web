@@ -60,10 +60,10 @@ $pad: 12px;
   }
 
   button.icon-button {
-      float: right;
-      margin: -$pad / 2 !important;
-      width: 48px;
-      height: 48px;
+    float: right;
+    margin: -$pad / 2 !important;
+    width: 48px;
+    height: 48px;
   }
 }
 
@@ -72,18 +72,22 @@ $pad: 12px;
 }
 
 .traces-list {
-    position: absolute;
-    left: 0; top: 0; right: 0; bottom: 0;
-    height: 100%;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  height: 100%;
+  display: flex; flex-direction: column;
 
+  .traces {
+    flex: 1;
     .trace-item {
-        white-space: nowrap;
-        overflow: hidden;
-        height: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      height: 50px;
     }
+  }
 }
 
 .sessions-list {
-    flex: 1;
-    overflow: auto;
+  flex: 1;
+  overflow: auto;
 }

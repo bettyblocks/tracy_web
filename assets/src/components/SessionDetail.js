@@ -4,23 +4,37 @@ import { connect } from 'react-redux'
 import Subheader from 'material-ui/Subheader'
 import AutoScroll from 'react-auto-scroll'
 import { AutoSizer, List } from 'react-virtualized'
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
 
 class SessionDetail extends React.Component {
   render() {
+    const title = `Traces (${this.props.traces.length})`;
     return (
       <div className="traces-list">
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              width={width}
-              height={height}
-              rowHeight={50}
-              rowCount={this.props.traces.length}
-              noRowsRenderer={::this.noRowsRenderer}
-              rowRenderer={::this.rowRenderer}
-            />
-          )}
-        </AutoSizer>
+        <Toolbar>
+          <ToolbarGroup>
+            <ToolbarTitle text={title} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <FlatButton label="Clear" />
+          </ToolbarGroup>
+        </Toolbar>
+
+        <div className="traces">
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                width={width}
+                height={height}
+                rowHeight={50}
+                rowCount={this.props.traces.length}
+                noRowsRenderer={::this.noRowsRenderer}
+                rowRenderer={::this.rowRenderer}
+              />
+            )}
+          </AutoSizer>
+        </div>
       </div>
     )
   }
