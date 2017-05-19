@@ -29,5 +29,10 @@ export default {
     SET_ACTIVE_SESSION: (state, action) => action.payload,
     // Clear the session when the active definition changes
     SET_ACTIVE_DEFINITION: () => null,
-  }, null)
+  }, null),
+
+  sessionDialogShowing: handleActions({
+    SHOW_SESSION_DIALOG: (state, action) => action.payload
+  }, false)
+
 }

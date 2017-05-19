@@ -11,5 +11,7 @@ export default createActions({
   NEW_SESSION: x => x,
 
   GET_TRACES_RESULT: x => x,
-  ADD_TRACES: x => x
+  ADD_TRACES: x => x,
+
+  SHOW_SESSION_DIALOG: x => x
 })

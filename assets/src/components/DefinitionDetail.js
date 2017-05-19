@@ -54,7 +54,7 @@ class DefinitionDetail extends React.Component {
         className={session.id === this.props.activeSession ? "selected" : null}
         key={session.id}
         secondaryText={session.time}
-        onTouchTap={this.openSession.bind(this, session)}>{session.id}</ListItem>
+        onTouchTap={this.openSession.bind(this, session)}>{session.metadata.title || session.id}</ListItem>
     )
   }
 }

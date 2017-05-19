@@ -7,6 +7,9 @@ import { AutoSizer, List } from 'react-virtualized'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 
+import store from '../store'
+import actions from '../actions'
+
 class SessionDetail extends React.Component {
   render() {
     const title = `Traces (${this.props.traces.length})`;
@@ -17,7 +20,7 @@ class SessionDetail extends React.Component {
             <ToolbarTitle text={title} />
           </ToolbarGroup>
           <ToolbarGroup>
-            <FlatButton label="Clear" />
+            <FlatButton label="Info" onTouchTap={() => store.dispatch(actions.showSessionDialog(true))} />
           </ToolbarGroup>
         </Toolbar>
 

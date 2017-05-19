@@ -24,6 +24,7 @@ export default class extends React.Component {
           direction="vertical" >
           {children}
         </SplitLayout>
+        {this.props.extra || null}
       </div>
     )
   }
