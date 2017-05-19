@@ -17,7 +17,7 @@ config :logger, :console, format: "[$level] $message\n"
 
 config :tracy_web, :definitions, [
   [id: "test", modules: [String]],
-  [id: "betty", modules: [Betty.App.Meta]]
+  [id: "betty", modules: [Betty.App.Meta, Betty.App.Matcher, Betty.Repo]]
 ]
 
 

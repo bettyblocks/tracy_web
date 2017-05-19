@@ -49,12 +49,12 @@ function* tracesLoader() {
     channel.join()
            .receive('error', resp => { console.log('Unable to join', resp) })
 
-    channel.on('traces', payload => {
-      store.dispatch(actions.getTracesResult(payload.traces))
+    channel.on('traces', ({traces}) => {
+      store.dispatch(actions.getTracesResult(traces))
     })
 
-    channel.on('trace', trace => {
-      store.dispatch(actions.newTrace(trace))
+    channel.on('add_traces', ({traces}) => {
+      store.dispatch(actions.addTraces(traces))
     })
 
   }

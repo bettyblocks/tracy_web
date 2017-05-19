@@ -32,7 +32,9 @@ class DefinitionDetail extends React.Component {
           </IconButton>
 
           <h2>{definition.id}</h2>
-          Modules: {definition.modules.join(",")}
+
+          <h3>Modules</h3>
+          {definition.modules.join(", ")}
 
         </Paper>
 

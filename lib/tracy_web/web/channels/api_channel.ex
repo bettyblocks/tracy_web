@@ -13,9 +13,7 @@ defmodule TracyWeb.Web.ApiChannel do
   end
 
   def handle_in("get_sessions", definition_id, socket) do
-    s = Storage.get_sessions(definition_id)
-    IO.inspect s, label: "s"
-    reply = %{sessions: s}
+    reply = %{sessions: Storage.get_sessions(definition_id)}
     {:reply, {:ok, reply}, socket}
   end
 
