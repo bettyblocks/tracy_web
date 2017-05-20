@@ -14,7 +14,7 @@ import actions from '../actions'
 class Page extends React.Component {
   render() {
     return (
-      <HorizontalContainer extra={this.renderDialog()}>
+      <HorizontalContainer extra={[this.renderSessionDialog(), this.renderTraceDialog()]}>
         <DefinitionsList />
         <DefinitionDetail />
         <SessionDetail />
@@ -22,7 +22,7 @@ class Page extends React.Component {
     )
   }
 
-  renderDialog() {
+  renderSessionDialog() {
     if (!this.props.sessionDialogShowing) {
       return null
     }
@@ -32,11 +32,32 @@ class Page extends React.Component {
 
     return (
       <Dialog
+        key={0}
         title={session.metadata.title || session.id}
         open={true}
         className="content"
         onRequestClose={() => store.dispatch(actions.showSessionDialog(false))}>
         <h3>Metadata:</h3>
+        <pre>{code}</pre>
+      </Dialog>
+    )
+  }
+
+  renderTraceDialog() {
+    if (!this.props.traceDialog) {
+      return null
+    }
+
+    const trace = this.props.traceDialog
+    const code = JSON.stringify(trace, null, '  ')
+
+    return (
+      <Dialog
+        key={1}
+        title={"Trace"}
+        open={true}
+        className="content"
+        onRequestClose={() => store.dispatch(actions.showTraceDialog(null))}>
         <pre>{code}</pre>
       </Dialog>
     )

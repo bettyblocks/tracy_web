@@ -33,6 +33,10 @@ export default {
 
   sessionDialogShowing: handleActions({
     SHOW_SESSION_DIALOG: (state, action) => action.payload
-  }, false)
+  }, false),
+
+  traceDialog: handleActions({
+    SHOW_TRACE_DIALOG: (state, action) => action.payload
+  }, null)
 
 }

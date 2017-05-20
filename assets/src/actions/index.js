@@ -13,5 +13,6 @@ export default createActions({
   GET_TRACES_RESULT: x => x,
   ADD_TRACES: x => x,
 
-  SHOW_SESSION_DIALOG: x => x
+  SHOW_SESSION_DIALOG: x => x,
+  SHOW_TRACE_DIALOG: x => x
 })

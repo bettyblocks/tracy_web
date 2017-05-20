@@ -79,10 +79,24 @@ $pad: 12px;
 
   .traces {
     flex: 1;
-    .trace-item {
-      white-space: nowrap;
-      overflow: hidden;
-      height: 50px;
+
+    .ReactVirtualized__Table__row, .ReactVirtualized__Table__headerRow {
+      display: flex;
+      flex-direction: row;
+    }
+    .ReactVirtualized__Table__row {
+      &:hover {
+        background-color: #e0e0e0;
+        cursor: pointer;
+      }
+    }
+
+    .ReactVirtualized__Table__rowColumn, .ReactVirtualized__Table__headerColumn {
+      font-size: 12px;
+      padding: 2px;
+    }
+    .ReactVirtualized__Table__headerColumn {
+      font-weight: 500;
     }
   }
 }

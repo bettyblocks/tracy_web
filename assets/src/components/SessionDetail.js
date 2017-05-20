@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Subheader from 'material-ui/Subheader'
 import AutoScroll from 'react-auto-scroll'
-import { AutoSizer, List } from 'react-virtualized'
+import { AutoSizer, Table, Column } from 'react-virtualized'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -13,6 +13,8 @@ import actions from '../actions'
 class SessionDetail extends React.Component {
   render() {
     const title = `Trace details (${this.props.traces.length} entries)`;
+    const columnWidths = [0.15, 0.4, 0.45]
+
     return (
       <div className="traces-list">
         <Toolbar>
@@ -27,14 +29,19 @@ class SessionDetail extends React.Component {
         <div className="traces">
           <AutoSizer>
             {({ height, width }) => (
-              <List
+              <Table
                 width={width}
                 height={height}
-                rowHeight={50}
+                headerHeight={20}
+                rowHeight={20}
                 rowCount={this.props.traces.length}
-                noRowsRenderer={::this.noRowsRenderer}
-                rowRenderer={::this.rowRenderer}
-              />
+                onRowClick={({rowData}) => store.dispatch(actions.showTraceDialog(rowData))}
+                rowGetter={({index}) => this.props.traces[index]}
+              >
+                <Column label='Type' dataKey='type' width={columnWidths[0] * width} />
+                <Column label='Module' dataKey='module' width={columnWidths[1] * width} />
+                <Column label='Function' dataKey='function' width={columnWidths[2] * width} />
+              </Table>
             )}
           </AutoSizer>
         </div>
@@ -42,13 +49,23 @@ class SessionDetail extends React.Component {
     )
   }
 
-  rowRenderer ({ index, isScrolling, key, style }) {
-    let trace = this.props.traces[index]
+  cellRenderer ({ columnIndex, rowIndex, key, style }) {
+    let trace = this.props.traces[rowIndex]
+    let columns = ['type', 'module', 'function', 'args']
+    let value
+    switch (columnIndex) {
+      case 0:
+        value = trace.type
+        break
+      case 1:
+        value = (trace.module.replace(/^Elixir./, '')) + ':' + trace.function
+        break
+      case 2:
+        value = trace.args
+    }
+
     return (
-      <div
-        key={index}
-        style={style}
-        className="trace-item">{trace.trace}</div>
+      <div key={key} style={style} className="trace-item">{value}</div>
     )
   }
 
