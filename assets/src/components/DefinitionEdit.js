@@ -2,15 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import Paper from 'material-ui/Paper';
-import { List, ListItem } from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import IconButton from 'material-ui/IconButton';
-import Edit from 'material-ui/svg-icons/image/edit';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import ModuleInput from './ModuleInput'
-
-import store from '../store'
+import DefinitionEditor from './DefinitionEditor'
 
 class DefinitionEdit extends React.Component {
 
@@ -20,12 +14,8 @@ class DefinitionEdit extends React.Component {
 
     return (
       <div className="padding">
-        <Paper className="content">
-          <h2>Editing: {definition.id}</h2>
-
-          <h3>Traced modules</h3>
-          {definition.modules.map((m, i) => <ModuleInput key={i} module={m} />)}
-        </Paper>
+        <DefinitionEditor definition={definition} />
+        <RaisedButton>Save</RaisedButton>
       </div>
     )
   }

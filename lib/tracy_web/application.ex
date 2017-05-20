@@ -10,6 +10,7 @@ defmodule TracyWeb.Application do
     children = [
       worker(TracyWeb.Registry, []),
       worker(TracyWeb.Coordinator, []),
+      worker(TracyWeb.ModuleServer, []),
       supervisor(TracyWeb.UpstreamSupervisor, []),
       supervisor(TracyWeb.Web.Endpoint, []),
     ]

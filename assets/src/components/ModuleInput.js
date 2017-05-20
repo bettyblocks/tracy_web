@@ -10,20 +10,17 @@ import { api } from '../sagas'
 export default class extends React.Component {
 
   state = {
-    completions: [],
+    modules: [],
     searchText: ''
   }
 
   componentWillMount() {
     this.setState({searchText: this.props.module})
+    api.push('get_modules', {})
+       .receive('ok', ({modules}) => {
+         this.setState({modules})
+       })
   }
-
-  handleInput = debounce((t) => {
-    api.push('mod_autocomplete', {text: t})
-       .receive('ok', ({completions}) => {
-         this.setState({completions})
-       });
-  })
 
   render() {
     return (
@@ -31,9 +28,10 @@ export default class extends React.Component {
         <AutoComplete
           hintText="Module name"
           searchText={this.state.searchText}
-          onUpdateInput={::this.handleInput}
           openOnFocus={true}
-          dataSource={this.state.completions}
+          filter={AutoComplete.caseInsensitiveFilter}
+          maxSearchResults={20}
+          dataSource={this.state.modules}
           onNewRequest={(searchText) => this.setState({searchText})}
         />
         <IconButton><Delete /></IconButton>

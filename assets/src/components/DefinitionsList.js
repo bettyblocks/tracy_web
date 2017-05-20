@@ -5,6 +5,8 @@ import { push } from 'react-router-redux'
 import RaisedButton from 'material-ui/RaisedButton'
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import store from '../store'
 import actions from '../actions'
@@ -19,13 +21,27 @@ class Component extends React.Component {
     store.dispatch(push(`/d/${id}`))
   }
 
+  addDefinition() {
+    store.dispatch(push(`/d/add`))
+  }
+
   render() {
     let { definitions } = this.props
     return (
-      <List>
-        <Subheader>Definitions</Subheader>
-        {Object.values(definitions).map(this.renderItem.bind(this))}
-      </List>
+      <div className="definitions-list">
+        <List>
+          <Subheader>Definitions</Subheader>
+          {Object.values(definitions).map(this.renderItem.bind(this))}
+        </List>
+
+        <FloatingActionButton
+          style={{position: 'absolute', right: 12, bottom: 12}}
+          mini
+          onTouchTap={::this.addDefinition}>
+          <ContentAdd />
+        </FloatingActionButton>
+
+      </div>
     )
   }
 
