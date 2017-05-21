@@ -16,8 +16,8 @@ config :tracy_web, TracyWeb.Web.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 config :tracy_web, :definitions, [
-  [id: "test", modules: [String]],
-  [id: "betty", modules: [Betty.App.Meta, Betty.App.Matcher, Betty.Repo]]
+  [id: "test", inclusions: ["String"]],
+  [id: "betty", inclusions: ["Betty.App.*"], exclusions: ["Betty.App.Meta"]]
 ]
 
 

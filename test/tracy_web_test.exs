@@ -1,11 +1,11 @@
 defmodule TracyWebTest do
   use ExUnit.Case
 
-  alias Tracy.Definition
-  alias TracyWeb.{Registry, Storage}
+  alias Tracy.TraceConfig
+  alias TracyWeb.{Definition, Registry, Storage}
 
   setup do
-    d = Definition.new([String])
+    d = Definition.new(inclusions: ["String"])
     :ok = Registry.put(d)
     {:ok, %{definition: d.id}}
   end

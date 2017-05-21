@@ -33,7 +33,8 @@ defmodule TracyWeb.Coordinator do
           # start tracer process in supervisor
           {:ok, upstream} = UpstreamSupervisor.start_upstream(session)
           # reply with the new process and the definition
-          {:ok, {session.id, definition, upstream}}
+          trace_config = TracyWeb.Definition.to_trace_config(definition, upstream)
+          {:ok, {session.id, trace_config}}
 
         {:error, _} = e ->
           e

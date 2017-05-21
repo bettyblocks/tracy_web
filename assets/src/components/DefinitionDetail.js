@@ -33,8 +33,19 @@ class DefinitionDetail extends React.Component {
 
           <h2>{definition.id}</h2>
 
-          <h3>Modules</h3>
-          {definition.modules.join(", ")}
+          {definition.inclusions.length
+           ? <div>
+             <h3>Included</h3>
+             {definition.inclusions.join(", ")}
+           </div>
+           : null}
+
+          {definition.exclusions.length
+           ? <div>
+             <h3>Excluded</h3>
+             {definition.exclusions.join(", ")}
+           </div>
+           : null}
 
         </Paper>
 

@@ -3,7 +3,7 @@ defmodule TracyWeb.CoordinatorTest do
 
   alias TracyWeb.Coordinator
   alias TracyWeb.Registry
-  alias Tracy.Definition
+  alias TracyWeb.Definition
 
   test "globally registered process" do
     pid = :global.whereis_name(TracyWeb.Coordinator)
@@ -16,10 +16,12 @@ defmodule TracyWeb.CoordinatorTest do
   end
 
   test "check start trace - with definition" do
-    d = Definition.new([String])
+    d = Definition.new(inclusions: ["String"])
     :ok = Registry.put(d)
-    assert {:ok, {_session_id, ^d, pid}} = Coordinator.check_start_trace(d.id)
-    assert is_pid(pid)
+    assert {:ok, {_session_id, cfg}} = Coordinator.check_start_trace(d.id)
+
+    assert [String] == cfg.modules
+    assert is_pid(cfg.upstream)
   end
 
 end

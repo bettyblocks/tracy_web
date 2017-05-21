@@ -10,8 +10,12 @@ export default class extends React.Component {
       <Paper className="content">
         <h2>{definition.id ? "Edit definition" : "Add definition"}</h2>
 
-        <h3>Traced modules</h3>
-        {definition.modules.map((m, i) => <ModuleInput key={i} module={m} />)}
+        <h3>Included modules</h3>
+        {definition.inclusions.map((m, i) => <ModuleInput key={i} module={m} />)}
+
+        <h3>Excluded modules</h3>
+        {definition.exclusions.map((m, i) => <ModuleInput key={i} module={m} />)}
+
       </Paper>
     )
   }

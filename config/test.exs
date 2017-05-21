@@ -7,7 +7,7 @@ config :tracy_web, TracyWeb.Web.Endpoint,
   server: false
 
 config :tracy_web, :definitions, [
-  [id: "test", modules: [String]]
+  [id: "test", inclusions: ["String"]]
 ]
 
 # Print only warnings and errors during test
