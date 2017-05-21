@@ -113,3 +113,13 @@ $pad: 12px;
   flex: 1;
   overflow: auto;
 }
+
+table {
+  margin: 0;
+  pre {
+    margin: 0;
+  }
+  th, td {
+    margin: 0;
+  }
+}

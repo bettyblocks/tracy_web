@@ -58,7 +58,16 @@ class Page extends React.Component {
         open={true}
         className="content"
         onRequestClose={() => store.dispatch(actions.showTraceDialog(null))}>
-        <pre>{code}</pre>
+        <table>
+          <tbody>
+            {Object.keys(trace).map((k) => (
+              <tr key={k}>
+                <td>{k}</td>
+                <td><pre>{trace[k]}</pre></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Dialog>
     )
   }

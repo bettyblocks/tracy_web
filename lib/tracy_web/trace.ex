@@ -11,7 +11,7 @@ defmodule TracyWeb.Trace do
       type: :call,
       module: module,
       function: function,
-      args: inspect(args)
+      args: inspect(args, pretty: true, width: 40)
     }
   end
   def new({:trace, :return_to, {module, function, arity}}, time) do
