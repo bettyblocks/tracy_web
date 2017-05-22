@@ -1,12 +1,12 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
+import { push } from 'react-router-redux'
 
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper'
+import FlatButton from 'material-ui/FlatButton'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import ModuleInput from './ModuleInput'
-
 import store from '../store'
 import actions from '../actions'
 
@@ -14,6 +14,20 @@ export default class extends React.Component {
 
   save(definition) {
     store.dispatch(actions.putDefinition(definition))
+    this.back()
+  }
+
+  remove(definition) {
+    store.dispatch(actions.removeDefinition(definition))
+    store.dispatch(push('/'))
+  }
+
+  back() {
+    if (this.props.definition.id) {
+      store.dispatch(push('/d/' + this.props.definition.id))
+    } else {
+      store.dispatch(push('/'))
+    }
   }
 
   render() {
@@ -57,9 +71,16 @@ export default class extends React.Component {
 
         </Paper>
 
-        <div>
+        <div className='buttons'>
+          {definition.id
+           ? <FlatButton secondary label='Remove' className='danger'
+               onTouchTap={::this.remove.bind(this, definition)} />
+           : null}
+
           <RaisedButton primary label='Save'
             onTouchTap={::this.save.bind(this, definition)} />
+
+          <FlatButton label='Cancel' onTouchTap={::this.back.bind(this)} />
         </div>
       </div>
     )

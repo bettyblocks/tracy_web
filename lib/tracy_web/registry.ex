@@ -17,6 +17,10 @@ defmodule TracyWeb.Registry do
     GenServer.call(__MODULE__, {:get, id})
   end
 
+  def remove(id) do
+    GenServer.call(__MODULE__, {:remove, id})
+  end
+
   def all() do
     GenServer.call(__MODULE__, :all)
   end
@@ -30,6 +34,10 @@ defmodule TracyWeb.Registry do
     state =
       state |> Map.put(definition.id, definition)
     {:reply, :ok, state}
+  end
+
+  def handle_call({:remove, id}, _from, state) do
+    {:reply, :ok, Map.delete(state, id)}
   end
 
   def handle_call({:get, id}, _from, state) do

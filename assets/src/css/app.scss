@@ -133,3 +133,14 @@ table {
     padding: 0!important;
   }
 }
+
+.buttons {
+  > * {
+    margin-right: 12px;
+  }
+
+  > .danger {
+    margin-right: 0;
+    float: right;
+  }
+}

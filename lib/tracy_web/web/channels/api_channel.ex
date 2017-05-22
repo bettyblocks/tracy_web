@@ -27,6 +27,11 @@ defmodule TracyWeb.Web.ApiChannel do
     {:reply, {:ok, %{}}, socket}
   end
 
+  def handle_in("remove_definition", %{"id" => id}, socket) do
+    :ok = Registry.remove(id)
+    {:reply, {:ok, %{}}, socket}
+  end
+
   def handle_in("get_modules", _payload, socket) do
     modules =
       TracyWeb.ModuleServer.all_modules()

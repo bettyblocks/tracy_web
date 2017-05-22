@@ -1,4 +1,4 @@
-import { take, call, all, put } from 'redux-saga/effects'
+import { take, call, all, put, takeEvery } from 'redux-saga/effects'
 import { takeLatest } from 'redux-saga'
 
 import socket from '../socket'
@@ -14,8 +14,8 @@ api
   .receive('error', resp => { console.log('Unable to join', resp) })
 
 api.on('new_session', session => {
-  store.dispatch(actions.newSession(session))
   store.dispatch(actions.setActiveSession(session.id))
+  store.dispatch(actions.newSession(session))
 })
 
 
@@ -38,14 +38,17 @@ function* definitionLoader() {
   }
 }
 
-function* definitionEditor() {
-  while (true) {
-    let definition = (yield take('PUT_DEFINITION')).payload;
-    yield new Promise(
-      (resolve) => api.push('put_definition', definition)
-                      .receive('ok', resolve))
-    yield put(actions.getDefinitions())
-  }
+function* putDefinition(action) {
+  yield new Promise((resolve) =>
+    api.push('put_definition', action.payload)
+       .receive('ok', resolve))
+  yield put(actions.getDefinitions())
+}
+
+function* removeDefinition(action) {
+  yield new Promise((resolve) =>
+    api.push('remove_definition', action.payload)
+       .receive('ok', resolve))
 }
 
 function* tracesLoader() {
@@ -76,9 +79,10 @@ export default function* () {
   yield all([
     channelCall("GET_DEFINITIONS", actions.getDefinitionsResult),
     channelCall("GET_SESSIONS", actions.getSessionsResult),
+    takeEvery("REMOVE_DEFINITION", removeDefinition),
+    takeEvery("PUT_DEFINITION", putDefinition),
     routerSaga(),
     definitionLoader(),
-    definitionEditor(),
     tracesLoader()
   ])
 }
