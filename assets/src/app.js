@@ -12,6 +12,7 @@ import DefinitionsList from './components/DefinitionsList'
 import HorizontalContainer from './components/HorizontalContainer'
 import IconButton from 'material-ui/IconButton';
 import HomeIcon from 'material-ui/svg-icons/action/home';
+import Logo from '../static/images/tracy_white.svg'
 import Snackbar from 'material-ui/Snackbar';
 
 import actions from './actions'
@@ -36,7 +37,7 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar title="Tracy"
-            iconElementLeft={<IconButton><HomeIcon /></IconButton>}
+            iconElementLeft={<img className='navbar-logo' src={Logo} width={36} height={36} />}
             onLeftIconButtonTouchTap={() => store.dispatch(push('/'))}
           />
           {this.props.children || this.renderMain()}
