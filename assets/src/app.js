@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { push } from 'react-router-redux'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import {blue900} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar'
 
 import DefinitionsList from './components/DefinitionsList'
@@ -16,6 +18,12 @@ import actions from './actions'
 import store from './store'
 import './css/app.scss'
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: blue900
+  }
+});
+
 class App extends Component {
 
   handleRequestClose() {
@@ -25,7 +33,7 @@ class App extends Component {
   render () {
     let { store } = this.context
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar title="Tracy"
             iconElementLeft={<IconButton><HomeIcon /></IconButton>}
