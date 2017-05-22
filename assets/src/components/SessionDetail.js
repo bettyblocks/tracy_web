@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Subheader from 'material-ui/Subheader'
-import AutoScroll from 'react-auto-scroll'
 import { AutoSizer, Table, Column } from 'react-virtualized'
+import 'react-virtualized/styles.css'
+
+import Subheader from 'material-ui/Subheader'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 
