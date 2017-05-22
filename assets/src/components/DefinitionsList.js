@@ -50,7 +50,7 @@ class Component extends React.Component {
       <ListItem
         className={d.id === this.props.activeDefinition ? "selected" : null}
         onTouchTap={() => this.openDefinition(d.id)}
-        key={d.id}>{d.id}</ListItem>
+        key={d.id}>{d.label || d.id}</ListItem>
     )
   }
 }

@@ -1,17 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import DefinitionsList from '../components/DefinitionsList'
-import DefinitionDetail from '../components/DefinitionDetail'
-import DefinitionAdd from '../components/DefinitionAdd'
 import HorizontalContainer from '../components/HorizontalContainer'
+import DefinitionsList from '../components/DefinitionsList'
+import DefinitionEditor from '../components/DefinitionEditor'
 
-export default class Page extends React.Component {
+class Page extends React.Component {
   render() {
+    const definition = {inclusions: [], exclusions: [], id: null}
     return (
       <HorizontalContainer>
         <DefinitionsList />
-        <DefinitionAdd />
+        <DefinitionEditor definition={definition} />
       </HorizontalContainer>
     )
   }
 }
+export default connect(s => s)(Page)

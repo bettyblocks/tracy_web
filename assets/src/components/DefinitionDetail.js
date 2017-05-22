@@ -31,7 +31,7 @@ class DefinitionDetail extends React.Component {
             <Edit />
           </IconButton>
 
-          <h2>{definition.id}</h2>
+          <h2>{definition.label || definition.id}</h2>
 
           {definition.inclusions.length
            ? <div>

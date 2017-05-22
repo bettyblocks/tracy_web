@@ -38,6 +38,16 @@ function* definitionLoader() {
   }
 }
 
+function* definitionEditor() {
+  while (true) {
+    let definition = (yield take('PUT_DEFINITION')).payload;
+    yield new Promise(
+      (resolve) => api.push('put_definition', definition)
+                      .receive('ok', resolve))
+    yield put(actions.getDefinitions())
+  }
+}
+
 function* tracesLoader() {
   let channel = null;
   while (true) {
@@ -68,6 +78,7 @@ export default function* () {
     channelCall("GET_SESSIONS", actions.getSessionsResult),
     routerSaga(),
     definitionLoader(),
+    definitionEditor(),
     tracesLoader()
   ])
 }

@@ -92,6 +92,9 @@ defmodule TracyWeb.ModuleServer do
     end
   end
 
+  defp string_to_module(":" <> mod_str) do
+    String.to_atom(mod_str)
+  end
   defp string_to_module(str) do
     first = String.first(str)
     mod_str = case "A" <= first and first <= "Z" do

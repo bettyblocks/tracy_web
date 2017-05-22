@@ -4,6 +4,7 @@ export default createActions({
   SET_ACTIVE_DEFINITION: x => x,
   GET_DEFINITIONS: x => x,
   GET_DEFINITIONS_RESULT: x => x,
+  PUT_DEFINITION: x => x,
 
   SET_ACTIVE_SESSION: x => x,
   GET_SESSIONS: x => x,

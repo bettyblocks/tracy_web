@@ -20,5 +20,9 @@ defmodule TracyWeb.ModuleServerTest do
     assert [Code] == ModuleServer.filter("Cod*")
   end
 
+  test "lowercase atoms" do
+    assert [:io_lib] == ModuleServer.filter(":io_lib")
+  end
+
 
 end

@@ -1,7 +1,7 @@
 defmodule TracyWeb.Web.ApiChannel do
   use TracyWeb.Web, :channel
 
-  alias TracyWeb.{Storage, Registry}
+  alias TracyWeb.{Storage, Registry, Definition}
 
   def join("api", payload, socket) do
     {:ok, socket}
@@ -23,13 +23,14 @@ defmodule TracyWeb.Web.ApiChannel do
   end
 
   def handle_in("put_definition", payload, socket) do
-    definition = 123
-    Registry.put(definition)
+    Registry.put(Definition.from_payload(payload))
     {:reply, {:ok, %{}}, socket}
   end
 
   def handle_in("get_modules", _payload, socket) do
-    modules = TracyWeb.ModuleServer.all_modules()
+    modules =
+      TracyWeb.ModuleServer.all_modules()
+      |> Enum.map(&Kernel.inspect/1)
     {:reply, {:ok, %{modules: modules}}, socket}
   end
 
