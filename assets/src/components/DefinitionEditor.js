@@ -18,6 +18,8 @@ export default class extends React.Component {
 
   render() {
     const definition = this.props.definition
+    if (!definition) return null
+
     return (
       <div className="padding">
         <Paper className="content">
@@ -36,7 +38,8 @@ export default class extends React.Component {
                   this.forceUpdate(); }}
             />
           )}
-          <FlatButton onTouchTap={() => { definition.inclusions.push(""); this.forceUpdate() }}>Add</FlatButton>
+          <RaisedButton label='Add'
+            onTouchTap={() => { definition.inclusions.push(""); this.forceUpdate() }} />
 
           <h3>Excluded modules</h3>
           {definition.exclusions.map((m, i) =>
@@ -49,11 +52,15 @@ export default class extends React.Component {
                   this.forceUpdate(); }}
             />
           )}
-          <FlatButton onTouchTap={() => { definition.exclusions.push(""); this.forceUpdate() }}>Add</FlatButton>
+          <RaisedButton label='Add'
+            onTouchTap={() => { definition.exclusions.push(""); this.forceUpdate() }} />
 
         </Paper>
 
-        <RaisedButton primary onTouchTap={::this.save.bind(this, definition)}>Save</RaisedButton>
+        <div>
+          <RaisedButton primary label='Save'
+            onTouchTap={::this.save.bind(this, definition)} />
+        </div>
       </div>
     )
   }

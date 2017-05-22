@@ -1,8 +1,7 @@
 import React from 'react';
 
 import AutoComplete from 'material-ui/AutoComplete'
-import IconButton from 'material-ui/IconButton'
-import Delete from 'material-ui/svg-icons/content/remove-circle';
+import FlatButton from 'material-ui/FlatButton'
 
 import debounce from 'lodash/debounce'
 import { api } from '../sagas'
@@ -35,7 +34,7 @@ export default class extends React.Component {
           onUpdateInput={(searchText) => this.props.onUpdate(this.props.index, searchText)}
           onNewRequest={(searchText) => this.setState({searchText})}
         />
-        <IconButton><Delete onTouchTap={() => this.props.onDelete(this.props.index)} /></IconButton>
+        <FlatButton label='remove' onTouchTap={() => this.props.onDelete(this.props.index)} />
       </div>
     )
   }
