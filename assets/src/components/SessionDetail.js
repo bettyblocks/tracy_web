@@ -35,6 +35,7 @@ class SessionDetail extends React.Component {
                 height={height}
                 headerHeight={20}
                 rowHeight={20}
+                scrollToIndex={this.props.sessionScrollToIndex}
                 rowCount={this.props.traces.length}
                 onRowClick={({rowData}) => store.dispatch(actions.showTraceDialog(rowData))}
                 rowGetter={({index}) => this.props.traces[index]}

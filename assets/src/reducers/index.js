@@ -41,6 +41,11 @@ export default {
 
   snackBar: handleActions({
     SHOW_SNACKBAR: (state, action) => action.payload
-  }, null)
+  }, null),
+
+  sessionScrollToIndex: handleActions({
+    SET_ACTIVE_SESSION: (state, action) => 0,
+    ADD_TRACES: (state, action) => 100000
+  }, 0)
 
 }
