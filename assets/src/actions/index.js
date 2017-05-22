@@ -16,5 +16,7 @@ export default createActions({
   ADD_TRACES: x => x,
 
   SHOW_SESSION_DIALOG: x => x,
-  SHOW_TRACE_DIALOG: x => x
+  SHOW_TRACE_DIALOG: x => x,
+
+  SHOW_SNACKBAR: x => x
 })

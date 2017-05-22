@@ -27,7 +27,6 @@ export default class extends React.Component {
         <AutoComplete
           hintText="Module name"
           searchText={this.state.searchText}
-          openOnFocus={true}
           filter={AutoComplete.caseInsensitiveFilter}
           maxSearchResults={20}
           dataSource={this.state.modules}

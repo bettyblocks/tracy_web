@@ -2,13 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
+import copy from 'copy-to-clipboard';
+
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import Edit from 'material-ui/svg-icons/image/edit';
+import Copy from 'material-ui/svg-icons/content/content-copy';
 
 import store from '../store'
+import actions from '../actions'
 
 class DefinitionDetail extends React.Component {
 
@@ -20,6 +24,11 @@ class DefinitionDetail extends React.Component {
     store.dispatch(push(`/d/${this.props.activeDefinition}/edit`))
   }
 
+  copyDefinitionKey(definition) {
+    copy(definition.id);
+    store.dispatch(actions.showSnackbar('Trace key copied to clipboard.'))
+  }
+
   render() {
     const definition = this.props.definitions[this.props.activeDefinition]
     if (!definition) return <span />
@@ -27,8 +36,11 @@ class DefinitionDetail extends React.Component {
     return (
       <div className="padding">
         <Paper className="content">
-          <IconButton className="icon-button" onTouchTap={::this.openDefinitionDetail}>
+          <IconButton tooltip='Edit trace definition' className="icon-button" onTouchTap={::this.openDefinitionDetail}>
             <Edit />
+          </IconButton>
+          <IconButton tooltip='Copy trace key' className="icon-button" onTouchTap={this.copyDefinitionKey.bind(this, definition)}>
+            <Copy />
           </IconButton>
 
           <h2>{definition.label || definition.id}</h2>

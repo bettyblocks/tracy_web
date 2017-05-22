@@ -37,6 +37,10 @@ export default {
 
   traceDialog: handleActions({
     SHOW_TRACE_DIALOG: (state, action) => action.payload
+  }, null),
+
+  snackBar: handleActions({
+    SHOW_SNACKBAR: (state, action) => action.payload
   }, null)
 
 }

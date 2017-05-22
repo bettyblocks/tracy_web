@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
+    "copy-to-clipboard": "^3.0.6",
     "lodash": "^4.17.4",
     "material-ui": "0.18.1",
     "phoenix": "^1.2.1",
