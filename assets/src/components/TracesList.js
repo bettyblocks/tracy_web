@@ -25,7 +25,8 @@ export default class extends React.Component {
               rowGetter={({index}) => this.props.traces[index]}
             >
               <Column label='Type' dataKey='type' width={columnWidths[0] * width} />
-              <Column label='Module' dataKey='module' width={columnWidths[1] * width} />
+              <Column label='Module' dataKey='module' width={columnWidths[1] * width}
+                cellRenderer={({cellData}) => cellData.replace(/^Elixir./, '')} />
               <Column label='Function' dataKey='function' width={columnWidths[2] * width} />
             </Table>
           )}
