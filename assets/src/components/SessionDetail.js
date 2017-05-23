@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import find from 'lodash/find'
 import filter from 'lodash/filter'
 
+import CircularProgress from 'material-ui/CircularProgress'
+
 import SessionToolbar from './SessionToolbar'
 import SessionFilterToolbar from './SessionFilterToolbar'
 import TracesList from './TracesList'
@@ -23,13 +25,21 @@ class SessionDetail extends React.Component {
     if (!session) return null
 
     const traces = this.filteredTraces()
-    const title = `${session.metadata.title || session.id} (${traces.length})`
+    let title = session.metadata.title || session.id
+    if (traces.length > 0) title += ` (${traces.length})`
 
     return (
       <div className="session-detail--wrapper">
         <SessionToolbar title={title} filterShowing={this.props.traceFilter.open} />
-        {this.props.traceFilter.open ? <SessionFilterToolbar filter={this.props.traceFilter} /> : null}
-        <TracesList traces={traces} scrollToIndex={this.props.sessionScrollToIndex} />
+
+        {this.props.traceFilter.open && !this.props.tracesLoading
+         ? <SessionFilterToolbar filter={this.props.traceFilter} />
+         : null}
+
+        {this.props.tracesLoading
+        ? (<div className="loader"><CircularProgress size={80} thickness={5} /></div>)
+         : <TracesList traces={traces} scrollToIndex={this.props.sessionScrollToIndex} />
+        }
       </div>
     )
   }

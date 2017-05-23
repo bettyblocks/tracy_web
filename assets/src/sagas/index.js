@@ -55,6 +55,8 @@ function* tracesLoader() {
   let channel = null;
   while (true) {
     let id = (yield take('SET_ACTIVE_SESSION')).payload
+    yield put(actions.tracesLoading())
+
     if (channel !== null) {
       channel.leave();
     }

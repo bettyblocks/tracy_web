@@ -14,6 +14,7 @@ export default createActions({
 
   GET_TRACES_RESULT: x => x,
   ADD_TRACES: x => x,
+  TRACES_LOADING: x => x,
   SET_TRACES_FILTER: x => x,
   TOGGLE_TRACES_FILTER: x => x,
   TOGGLE_TRACES_TYPE: x => x,

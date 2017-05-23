@@ -42,11 +42,18 @@ export default {
   // traces
 
   traces: handleActions({
+    // Start loading
+    TRACES_LOADING: (state, action) => [],
     // Set the traces
     GET_TRACES_RESULT: (state, action) => action.payload,
     // Append new traces
     ADD_TRACES: (state, action) => state.concat(action.payload)
   }, []),
+
+  tracesLoading: handleActions({
+    TRACES_LOADING: (state, action) => true,
+    GET_TRACES_RESULT: (state, action) => false
+  }, false),
 
   traceDialog: handleActions({
     SHOW_TRACE_DIALOG: (state, action) => action.payload
