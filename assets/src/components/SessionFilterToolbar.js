@@ -12,14 +12,17 @@ export default class extends React.Component {
   handleChange(event, text) {
     store.dispatch(actions.setTracesFilter({text}))
   }
+  clearFilter() {
+    store.dispatch(actions.setTracesFilter({text: ''}))
+  }
 
-  render() {
+    render() {
     const { filter } = this.props
     return (
       <Toolbar className="session-filter-toolbar--wrapper">
         <ToolbarGroup>
           <TextField hintText="Filter..." value={filter.text} onChange={::this.handleChange} />
-          <FlatButton label='clear' />
+          <FlatButton label='clear' onTouchTap={::this.clearFilter} />
         </ToolbarGroup>
         <ToolbarGroup>
           <span>call</span>
