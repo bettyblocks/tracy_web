@@ -10,13 +10,11 @@ import TracesList from './TracesList'
 class SessionDetail extends React.Component {
 
   filteredTraces() {
-    const q = this.props.traceFilter.text
-    if (!q.length) {
-      return this.props.traces
-    }
+    const {types, text} = this.props.traceFilter
 
     return filter(this.props.traces, (row) => (
-      row.module.search(q) >= 0 || row.function.search(q) >= 0
+      types.indexOf(row.type) >= 0 &&
+      (row.module.search(text) >= 0 || row.function.search(text) >= 0)
     ))
   }
 

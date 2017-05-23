@@ -16,6 +16,7 @@ export default createActions({
   ADD_TRACES: x => x,
   SET_TRACES_FILTER: x => x,
   TOGGLE_TRACES_FILTER: x => x,
+  TOGGLE_TRACES_TYPE: x => x,
 
   SHOW_SESSION_DIALOG: x => x,
   SHOW_TRACE_DIALOG: x => x,
