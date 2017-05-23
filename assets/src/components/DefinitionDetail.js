@@ -34,7 +34,7 @@ class DefinitionDetail extends React.Component {
     if (!definition) return <span />
 
     return (
-      <div className="padding">
+      <div className="definition-detail--wrapper padding">
         <Paper className="content">
           <IconButton tooltip='Edit trace definition' className="icon-button" onTouchTap={::this.openDefinitionDetail}>
             <Edit />

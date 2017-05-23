@@ -28,7 +28,7 @@ class Component extends React.Component {
   render() {
     let { definitions } = this.props
     return (
-      <div className="definitions-list">
+      <div className="definitions-list--wrapper">
         <List>
           <Subheader>Definitions</Subheader>
           {Object.values(definitions).map(this.renderItem.bind(this))}

@@ -35,7 +35,7 @@ class Page extends React.Component {
         key={0}
         title={session.metadata.title || session.id}
         open={true}
-        className="content"
+        className="session-detail--dialog content"
         onRequestClose={() => store.dispatch(actions.showSessionDialog(false))}>
         <h3>Metadata:</h3>
         <pre>{code}</pre>
@@ -56,7 +56,7 @@ class Page extends React.Component {
         key={1}
         title={"Trace"}
         open={true}
-        className="content"
+        className="session-detail--dialog content"
         onRequestClose={() => store.dispatch(actions.showTraceDialog(null))}>
         <table>
           <tbody>
