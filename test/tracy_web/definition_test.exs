@@ -9,6 +9,14 @@ defmodule TracyWeb.DefinitionTest do
     assert %Definition{inclusions: ["a"]} = d
   end
 
+  test "from payload" do
+    d = Definition.from_payload(%{"max_entries" => 100, "inclusions" => ["String"]})
+    assert d.max_entries == 100
+    assert d.id != nil
+    assert d.inclusions == ["String"]
+    assert d.exclusions == []
+  end
+
   test "definition to trace config" do
     d = %Definition{inclusions: ["String"]}
     c = Definition.to_trace_config(d)

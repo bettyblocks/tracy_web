@@ -1,7 +1,6 @@
 defmodule TracyWebTest do
   use ExUnit.Case
 
-  alias Tracy.TraceConfig
   alias TracyWeb.{Definition, Registry, Storage}
 
   setup do
@@ -45,14 +44,15 @@ defmodule TracyWebTest do
 
   test "integration with storing metadata", %{definition: definition} do
     Tracy.check_start_trace(definition, nil, fn() -> @metadata end)
-    {_, session} = assert_receive {:trace_started, _}
+    {_, session_id} = assert_receive {:trace_started, _}
 
     String.downcase "AA"
     String.downcase "AB"
 
     :timer.sleep 100
-    assert [sess] = Storage.get_sessions(definition)
-    assert sess.metadata == @metadata
+    assert [session] = Storage.get_sessions(definition)
+    assert session.id == session_id
+    assert session.metadata == @metadata
   end
 
 end
