@@ -28,6 +28,15 @@ defmodule TracyWeb.Upstream do
     {:noreply, state, @timeout}
   end
 
+  def handle_info({:tracer_started, pid}, state) do
+    Process.monitor(pid)
+    {:noreply, state}
+  end
+
+  def handle_info({:DOWN, _, :process, _pid, _reason}, state) do
+    {:stop, :normal, state}
+  end
+
   def handle_info(:timeout, state) do
     {:noreply, opt_flush(state)}
   end

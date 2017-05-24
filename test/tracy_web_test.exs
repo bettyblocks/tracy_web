@@ -55,4 +55,31 @@ defmodule TracyWebTest do
     assert session.metadata == @metadata
   end
 
+  test "upstream process gets stopped", %{definition: definition} do
+    parent = self()
+
+    spawn(fn ->
+      :started = Tracy.check_start_trace(definition)
+      assert_receive {:trace_started, _}
+
+      send parent, :started
+
+      String.downcase "AA"
+      String.downcase "AB"
+      send parent, :stopped
+    end)
+
+    assert_receive :started
+
+    children = Supervisor.count_children(TracyWeb.UpstreamSupervisor)
+    n = children.workers
+
+    assert_receive :stopped
+    :timer.sleep 50
+
+    children = Supervisor.count_children(TracyWeb.UpstreamSupervisor)
+    assert children.workers == n - 1
+
+  end
+
 end

@@ -7,7 +7,7 @@ defmodule TracyWeb.UpstreamSupervisor do
 
   def init([]) do
     children = [
-      worker(TracyWeb.Upstream, [])
+      worker(TracyWeb.Upstream, [], restart: :transient)
     ]
     supervise(children, strategy: :simple_one_for_one)
   end
