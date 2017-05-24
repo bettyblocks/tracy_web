@@ -21,7 +21,7 @@ defmodule TracyWeb.DefinitionTest do
     d = %Definition{inclusions: ["String"]}
     c = Definition.to_trace_config(d)
 
-    assert %TraceConfig{modules: [String]} = c
+    assert %TraceConfig{modules: [String], max_entries: 10000} = c
   end
 
   test "definition to trace config with wildcard" do
@@ -29,6 +29,12 @@ defmodule TracyWeb.DefinitionTest do
     c = Definition.to_trace_config(d)
 
     assert %TraceConfig{modules: [String.Break]} = c
+  end
+
+  test "definition w/ max entries" do
+    d = %Definition{max_entries: 10}
+    c = Definition.to_trace_config(d)
+    assert %TraceConfig{max_entries: 10} = c
   end
 
 end

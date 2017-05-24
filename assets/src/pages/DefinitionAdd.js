@@ -7,7 +7,7 @@ import DefinitionEditor from '../components/DefinitionEditor'
 
 class Page extends React.Component {
   render() {
-    const definition = {inclusions: [], exclusions: [], id: null}
+    const definition = {inclusions: [], exclusions: [], id: null, max_entries: 10000}
     return (
       <HorizontalContainer>
         <DefinitionsList />

@@ -30,18 +30,22 @@ defmodule TracyWeb.Definition do
   end
 
   defp validate("id", v) when is_binary(v), do: {:id, v}
+  defp validate("label", v) when is_binary(v), do: {:label, v}
   defp validate("max_entries", v) when is_integer(v), do: {:max_entries, v}
   defp validate("inclusions", l) when is_list(l), do: {:inclusions, l}
   defp validate("exclusions", l) when is_list(l), do: {:exclusions, l}
   defp validate(_, _), do: nil
 
   def to_trace_config(definition, upstream \\ nil) do
-    id = definition.id
+    modules =
+      (expand_modules(definition.inclusions) -- expand_modules(definition.exclusions))
+      |> Enum.uniq()
 
-    modules = (expand_modules(definition.inclusions) -- expand_modules(definition.exclusions))
-    |> Enum.uniq()
-
-    %TraceConfig{id: id, modules: modules, upstream: upstream}
+    %TraceConfig{
+      id: definition.id,
+      max_entries: definition.max_entries,
+      modules: modules,
+      upstream: upstream}
   end
 
   defp expand_modules(patterns) do

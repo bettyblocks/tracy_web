@@ -42,6 +42,9 @@ export default class extends React.Component {
           <h3>Label</h3>
           <TextField value={definition.label || ''} onChange={(e, v) => { definition.label = v; this.forceUpdate(); }} id='label' />
 
+          <h3>Max entries</h3>
+          <TextField value={definition.max_entries || ''} onChange={(e, v) => { definition.max_entries = parseInt(v, 10); this.forceUpdate(); }} id='max_entries' type='number' />
+
           <h3>Included modules</h3>
           {definition.inclusions.map((m, i) =>
             <ModuleInput key={i} index={i} module={m} onDelete={(i) => {
