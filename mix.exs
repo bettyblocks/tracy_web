@@ -8,7 +8,11 @@ defmodule WebTracer.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     name: "TracyWeb",
+     description: description(),
+     package: package(),
+     source_url: "https://github.com/bettyblocks/tracy_web"]
   end
 
   # Configuration for the OTP application.
@@ -33,7 +37,23 @@ defmodule WebTracer.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:tracy, path: "../tracy"}
+     {:tracy, "~> 0.1"},
+     {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
+  end
+
+  defp description do
+    """
+    Library for visual Elixir function call tracing.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "README*", "mix.exs", "priv"],
+      maintainers: ["Arjan Scherpenisse"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/bettyblocks/tracy_web"}
     ]
   end
 end
