@@ -44,7 +44,7 @@ defmodule WebTracer.Mixfile do
 
   defp description do
     """
-    Library for visual Elixir function call tracing.
+    Provides a web user interface for the Tracy function tracer.
     """
   end
 
