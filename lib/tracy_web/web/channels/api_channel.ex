@@ -3,11 +3,11 @@ defmodule TracyWeb.Web.ApiChannel do
 
   alias TracyWeb.{Storage, Registry, Definition}
 
-  def join("api", payload, socket) do
+  def join("api", _payload, socket) do
     {:ok, socket}
   end
 
-  def handle_in("get_definitions", payload, socket) do
+  def handle_in("get_definitions", _payload, socket) do
     definitions = %{definitions: Registry.all()}
     {:reply, {:ok, definitions}, socket}
   end
@@ -17,7 +17,7 @@ defmodule TracyWeb.Web.ApiChannel do
     {:reply, {:ok, reply}, socket}
   end
 
-  def handle_in("get_definition", payload, socket) do
+  def handle_in("get_definition", _payload, socket) do
     definition = %{foo: "bar"}
     {:reply, {:ok, definition}, socket}
   end

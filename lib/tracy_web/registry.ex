@@ -1,5 +1,5 @@
 defmodule TracyWeb.Registry do
-  @doc """
+  @moduledoc """
   Storage for tracing definitions
   """
   use GenServer

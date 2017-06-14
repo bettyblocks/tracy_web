@@ -3,8 +3,8 @@ defmodule TracyWeb.Web.TracerChannel do
 
   alias TracyWeb.Storage
 
-  def join("tracer:" <> session_id, payload, socket) do
-    send(self, :after_join)
+  def join("tracer:" <> session_id, _payload, socket) do
+    send(self(), :after_join)
     {:ok, assign(socket, :session_id, session_id)}
   end
 

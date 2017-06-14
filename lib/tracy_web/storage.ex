@@ -24,19 +24,19 @@ defmodule TracyWeb.Storage do
   @doc """
   Return the traces of the given session, oldest trace first.
   """
-  @spec get_traces(string()) :: [TracyWeb.Trace.t]
+  @spec get_traces(String.t()) :: [TracyWeb.Trace.t]
   def get_traces(session_id) do
     :ets.match_object(@trace_table, {{session_id, :_}, :_})
-    |> Enum.map(fn({{_session_id, ts}, trace}) -> trace end)
+    |> Enum.map(fn({{_session_id, _ts}, trace}) -> trace end)
   end
 
   @doc """
   Return sessions for the given definition. Most recent session is first in the list.
   """
-  @spec get_sessions(string()) :: [TracyWeb.Session.t]
+  @spec get_sessions(String.t()) :: [TracyWeb.Session.t]
   def get_sessions(definition_id) do
     :ets.match_object(@session_table, {{definition_id, :_}, :_})
-    |> Enum.map(fn({{_definition_id, ts}, session}) -> session end)
+    |> Enum.map(fn({{_definition_id, _ts}, session}) -> session end)
     |> Enum.reverse()
   end
 
