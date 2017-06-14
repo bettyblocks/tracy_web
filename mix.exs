@@ -50,7 +50,7 @@ defmodule WebTracer.Mixfile do
 
   defp package do
     [
-      files: ["lib", "README*", "mix.exs", "priv"],
+      files: ["lib", "README*", "mix.exs", "priv", "tracy.svg", "assets"],
       maintainers: ["Arjan Scherpenisse"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/bettyblocks/tracy_web"}
