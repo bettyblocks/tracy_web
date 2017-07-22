@@ -1,4 +1,4 @@
-# Tracy
+# Tracy [![Build Status](https://travis-ci.org/bettyblocks/tracy_web.svg?branch=master)](https://travis-ci.org/bettyblocks/tracy_web)
 
 ## `tracy_web` - web interface
 
